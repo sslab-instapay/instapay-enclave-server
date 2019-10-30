@@ -28,11 +28,11 @@ extern "C" {
 
 int initialize_enclave(void);
 
-unsigned int ecall_get_request_from_client(unsigned char *sender, unsigned char *receiver, unsigned int amount);
-void ecall_add_participant(unsigned int payment_num, unsigned char *addr);
-void ecall_add_addrs_sent_agr(unsigned int payment_num, unsigned char *addr);
-void ecall_add_addrs_sent_upt(unsigned int payment_num, unsigned char *addr);
-int ecall_is_unanimous(unsigned int payment_num, int s);
+unsigned int ecall_accept_request_w(unsigned char *sender, unsigned char *receiver, unsigned int amount);
+void ecall_add_participant_w(unsigned int payment_num, unsigned char *addr);
+void ecall_update_sentagr_list_w(unsigned int payment_num, unsigned char *addr);
+void ecall_update_sentupt_list_w(unsigned int payment_num, unsigned char *addr);
+int ecall_check_unanimity_w(unsigned int payment_num, int which_list);
 
 #if defined(__cplusplus)
 }

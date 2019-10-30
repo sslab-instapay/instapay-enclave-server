@@ -30,10 +30,10 @@ class Payment {
 
         static unsigned int acc_payment_num;
 
-        void register_participant(unsigned char*);
-        void update_addrs_sent_agr(unsigned char*);
-        void update_addrs_sent_upt(unsigned char*);
-        int check_unanimity(int);
+        void register_participant(unsigned char *addr);
+        void update_addrs_sent_agr(unsigned char *addr);
+        void update_addrs_sent_upt(unsigned char *addr);
+        int check_unanimity(int s);
 
     private:
         unsigned int m_payment_num;

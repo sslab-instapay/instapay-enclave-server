@@ -15,25 +15,25 @@ void ecall_accept_request(unsigned char *sender, unsigned char *receiver, unsign
 }
 
 
-void ecall_register_participant(unsigned int payment_num, unsigned char *addr)
+void ecall_add_participant(unsigned int payment_num, unsigned char *addr)
 {
     payments.find(payment_num)->second.register_participant(addr);
 }
 
 
-void ecall_update_addrs_sent_agr(unsigned int payment_num, unsigned char *addr)
+void ecall_update_sentagr_list(unsigned int payment_num, unsigned char *addr)
 {
     payments.find(payment_num)->second.update_addrs_sent_agr(addr);
 }
 
 
-void ecall_update_addrs_sent_upt(unsigned int payment_num, unsigned char *addr)
+void ecall_update_sentupt_list(unsigned int payment_num, unsigned char *addr)
 {
     payments.find(payment_num)->second.update_addrs_sent_upt(addr);
 }
 
 
-void ecall_check_unanimity(unsigned int payment_num, int s, int *is_unanimous)
+void ecall_check_unanimity(unsigned int payment_num, int which_list, int *is_unanimous)
 {
-    *is_unanimous = payments.find(payment_num)->second.check_unanimity(s);
+    *is_unanimous = payments.find(payment_num)->second.check_unanimity(which_list);
 }

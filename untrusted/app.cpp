@@ -163,15 +163,18 @@ int SGX_CDECL main(int argc, char *argv[])
     unsigned char *owner = (unsigned char*)"D03A2CC08755eC7D75887f0997195654b928893e";
     unsigned char *B = (unsigned char*)"0b4161ad4f49781a821c308d672e6c669139843c";
 
-    unsigned int payment_num = ecall_get_request_from_client(A, B, 8);
+    unsigned int payment_num = ecall_accept_request_w(A, B, 8);
     printf("PAYMENT_NUM: %d\n", payment_num);
 
-    ecall_add_participant(payment_num, A);
-    ecall_add_participant(payment_num, owner);
-    // ecall_add_participant(payment_num, B);
+    ecall_add_participant_w(payment_num, A);
+    ecall_add_participant_w(payment_num, owner);
+    ecall_add_participant_w(payment_num, B);
 
-    ecall_add_addrs_sent_agr(payment_num, A);
-    unsigned int is_unanimous = ecall_is_unanimous(payment_num, 0);
+    ecall_update_sentagr_list_w(payment_num, A);
+    ecall_update_sentagr_list_w(payment_num, owner);
+    ecall_update_sentagr_list_w(payment_num, B);
+    
+    unsigned int is_unanimous = ecall_check_unanimity_w(payment_num, 0);
     printf("IS_UNANIMOUS: %d\n", is_unanimous);
 
     /* =============== test =============== */

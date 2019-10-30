@@ -2,7 +2,7 @@
 #include "enclave_u.h"
 
 
-unsigned int ecall_get_request_from_client(unsigned char *sender, unsigned char *receiver, unsigned int amount)
+unsigned int ecall_accept_request_w(unsigned char *sender, unsigned char *receiver, unsigned int amount)
 {
     unsigned int payment_num;
 
@@ -12,28 +12,29 @@ unsigned int ecall_get_request_from_client(unsigned char *sender, unsigned char 
 }
 
 
-void ecall_add_participant(unsigned int payment_num, unsigned char *addr)
+void ecall_add_participant_w(unsigned int payment_num, unsigned char *addr)
 {
-    ecall_register_participant(global_eid, payment_num, addr);
+    ecall_add_participant(global_eid, payment_num, addr);
 }
 
 
-void ecall_add_addrs_sent_agr(unsigned int payment_num, unsigned char *addr)
+void ecall_update_sentagr_list_w(unsigned int payment_num, unsigned char *addr)
 {
-    ecall_update_addrs_sent_agr(global_eid, payment_num, addr);
+    ecall_update_sentagr_list(global_eid, payment_num, addr);
 }
 
 
-void ecall_add_addrs_sent_upt(unsigned int payment_num, unsigned char *addr)
+void ecall_update_sentupt_list_w(unsigned int payment_num, unsigned char *addr)
 {
-    ecall_update_addrs_sent_upt(global_eid, payment_num, addr);
+    ecall_update_sentupt_list(global_eid, payment_num, addr);
 }
 
 
-int ecall_is_unanimous(unsigned int payment_num, int s)
+int ecall_check_unanimity_w(unsigned int payment_num, int which_list)
 {
     int is_unanimous;
 
-    ecall_check_unanimity(global_eid, payment_num, s, &is_unanimous);
+    ecall_check_unanimity(global_eid, payment_num, which_list, &is_unanimous);
+
     return is_unanimous;
 }
