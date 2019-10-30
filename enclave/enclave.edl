@@ -1,0 +1,36 @@
+/* Enclave.edl - Top EDL file. */
+
+enclave {
+    untrusted {
+        void ocall_print_string([in, string] const char *str);
+    };
+
+    trusted {
+
+        /* payment */
+
+        public void ecall_accept_request(
+            [in, size=40] unsigned char *sender,
+            [in, size=40] unsigned char *receiver,
+            unsigned int amount,
+            [user_check] unsigned int *payment_num);
+        
+        public void ecall_register_participant(
+            unsigned int payment_num,
+            [in, size=40] unsigned char *addr);
+
+        public void ecall_update_addrs_sent_agr(
+            unsigned int payment_num,
+            [in, size=40] unsigned char *addr);
+
+        public void ecall_update_addrs_sent_upt(
+            unsigned int payment_num,
+            [in, size=40] unsigned char *addr);
+
+        public void ecall_check_unanimity(
+            unsigned int payment_num,
+            int s,
+            [user_check] int *is_unanimous);
+        
+    };
+};
