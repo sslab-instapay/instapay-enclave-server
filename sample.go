@@ -25,10 +25,10 @@ func main() {
 	C.ecall_add_participant_w(PaymentNum, &A[0]);
 	C.ecall_add_participant_w(PaymentNum, &owner[0]);
 	C.ecall_add_participant_w(PaymentNum, &B[0]);
-	
+
 	C.ecall_update_sentagr_list_w(PaymentNum, &A[0]);
 	C.ecall_update_sentagr_list_w(PaymentNum, &owner[0]);
-	C.ecall_update_sentagr_list_w(PaymentNum, &B[0]);
+	//C.ecall_update_sentagr_list_w(PaymentNum, &B[0]);
 
     Flag := C.ecall_check_unanimity_w(PaymentNum, C.int(0));
     fmt.Println(Flag)
