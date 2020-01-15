@@ -89,7 +89,7 @@ Crypto_Library_Name := sgx_tcrypto
 
 Enclave_C_Files := $(shell find enclave/ -type f -name '*.c')
 Enclave_Cpp_Files := $(shell find enclave/ -type f -name '*.cpp')
-Enclave_Include_Paths := -Iinclude -Ienclave -I$(SGX_SDK)/include -I$(SGX_SDK)/include/tlibc -I$(SGX_SDK)/include/libcxx -I$(SGX_SDK)/include/stdc++
+Enclave_Include_Paths := -Iinclude -Ienclave -I$(SGX_SDK)/include -I$(SGX_SDK)/include/tlibc -I$(SGX_SDK)/include/libcxx -I$(SGX_SDK)/include/stdc++ -Ienclave/libs/secp256k1 -Ienclave/libs/secp256k1/include -Ienclave/libs/sha3
 
 Enclave_Common_Flags := $(Enclave_Include_Paths) -nostdinc -fvisibility=hidden -fpie -fstack-protector-strong -fno-builtin-printf -DINTEL_SGX_ENV -DHAVE_CONFIG_H -Wreturn-type -Wextra
 Enclave_C_Flags := $(Enclave_Common_Flags) -Wno-implicit-function-declaration -std=c11

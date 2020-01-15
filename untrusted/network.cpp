@@ -38,3 +38,65 @@ int ecall_check_unanimity_w(unsigned int payment_num, int which_list)
 
     return is_unanimous;
 }
+
+
+void ecall_update_payment_status_to_success_w(unsigned int payment_num)
+{
+    ecall_update_payment_status_to_success(global_eid, payment_num);
+}
+
+
+void ecall_create_ag_req_msg_w(unsigned int payment_num, unsigned int payment_size, unsigned int *channel_ids, int *amount, unsigned char **original_msg, unsigned char **output)
+{
+    unsigned char *req_msg = new unsigned char[sizeof(message)];
+    unsigned char *req_sig = new unsigned char[65];
+
+    ecall_create_ag_req_msg(global_eid, payment_num, payment_size, channel_ids, amount, req_msg, req_sig);
+
+    *original_msg = req_msg;
+    *output = req_sig;
+}
+
+
+void ecall_create_ud_req_msg_w(unsigned int payment_num, unsigned int payment_size, unsigned int *channel_ids, int *amount, unsigned char **original_msg, unsigned char **output)
+{
+    unsigned char *req_msg = new unsigned char[sizeof(message)];
+    unsigned char *req_sig = new unsigned char[65];
+
+    ecall_create_ud_req_msg(global_eid, payment_num, payment_size, channel_ids, amount, req_msg, req_sig);
+
+    *original_msg = req_msg;
+    *output = req_sig;
+}
+
+
+void ecall_craete_confirm_msg_w(unsigned int payment_num, unsigned char **original_msg, unsigned char **output)
+{
+    unsigned char *confirm_msg = new unsigned char[sizeof(message)];
+    unsigned char *confirm_sig = new unsigned char[65];
+
+    ecall_create_confirm_msg(global_eid, payment_num, confirm_msg, confirm_sig);
+
+    *original_msg = confirm_msg;
+    *output = confirm_sig;
+}
+
+
+unsigned int ecall_verify_ag_res_msg_w(unsigned char *pubaddr, unsigned char *res_msg, unsigned char *res_sig)
+{
+    unsigned int is_verified;
+
+    ecall_verify_ag_res_msg(global_eid, pubaddr, res_msg, res_sig, &is_verified);
+
+    return is_verified;
+}
+
+
+unsigned int ecall_verify_ud_res_msg_w(unsigned char *pubaddr, unsigned char *res_msg, unsigned char *res_sig)
+{
+    unsigned int is_verified;
+
+    ecall_verify_ud_res_msg(global_eid, pubaddr, res_msg, res_sig, &is_verified);
+
+    return is_verified;
+}
