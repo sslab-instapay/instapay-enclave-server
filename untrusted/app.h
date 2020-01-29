@@ -84,7 +84,7 @@ void ecall_create_ud_req_msg_w(unsigned int payment_num, unsigned int payment_si
  *          output:         생성된 메시지의 signature 주소
  * In:      payment_num:    서버가 생성한 payment instance 번호
  */
-void ecall_craete_confirm_msg_w(unsigned int payment_num, unsigned char **original_msg, unsigned char **output);
+void ecall_create_confirm_msg_w(unsigned int payment_num, unsigned char **original_msg, unsigned char **output);
 
 /** 클라이언트가 보낸 agreement response의 메시지 서명을 검증
  *
