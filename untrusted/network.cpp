@@ -70,7 +70,7 @@ void ecall_create_ud_req_msg_w(unsigned int payment_num, unsigned int payment_si
 }
 
 
-void ecall_craete_confirm_msg_w(unsigned int payment_num, unsigned char **original_msg, unsigned char **output)
+void ecall_create_confirm_msg_w(unsigned int payment_num, unsigned char **original_msg, unsigned char **output)
 {
     unsigned char *confirm_msg = new unsigned char[sizeof(message)];
     unsigned char *confirm_sig = new unsigned char[65];
