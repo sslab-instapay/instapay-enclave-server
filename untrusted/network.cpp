@@ -51,10 +51,44 @@ void ecall_create_ag_req_msg_w(unsigned int payment_num, unsigned int payment_si
     unsigned char *req_msg = new unsigned char[sizeof(message)];
     unsigned char *req_sig = new unsigned char[65];
 
+    memset(req_msg, 0x00, sizeof(message));
+    memset(req_sig, 0x00, 65);
+
     ecall_create_ag_req_msg(global_eid, payment_num, payment_size, channel_ids, amount, req_msg, req_sig);
 
     *original_msg = req_msg;
     *output = req_sig;
+
+    // printf("====== GENERATED AGREEMENT REQUEST MESSAGE ======\n");
+    // printf("payment number: %d\n", payment_num);
+    // printf("payment size: %d\n", payment_size);
+    // printf("channel ids: ");
+    // for(int i = 0; i < payment_size; i++)
+    //     printf("%d ", channel_ids[i]);
+    // printf("\n");
+    // printf("amounts: ");
+    // for(int i = 0; i < payment_size; i++)
+    //     printf("%d ", amount[i]);
+    // printf("\n");
+    // printf("=================================================\n");
+
+    // message *m = (message*)req_msg;
+    // printf("===== AGREEMENT REQUEST MESSAGE BYTESTREAM ======\n");
+    // printf("type: %d\n", m->type);
+    // printf("channel_id: %d\n", m->channel_id);
+    // printf("amount: %d\n", m->amount);
+    // printf("counter: %d\n", m->counter);
+    // printf("payment number: %d\n", m->payment_num);
+    // printf("payment size: %d\n", m->payment_size);
+    // printf("channel ids: ");
+    // for(int i = 0; i < m->payment_size; i++)
+    //     printf("%d ", m->channel_ids[i]);
+    // printf("\n");
+    // printf("amounts: ");
+    // for(int i = 0; i < m->payment_size; i++)
+    //     printf("%d ", m->payment_amount[i]);
+    // printf("\n");
+    // printf("=================================================\n");
 }
 
 
@@ -62,6 +96,9 @@ void ecall_create_ud_req_msg_w(unsigned int payment_num, unsigned int payment_si
 {
     unsigned char *req_msg = new unsigned char[sizeof(message)];
     unsigned char *req_sig = new unsigned char[65];
+
+    memset(req_msg, 0x00, sizeof(message));
+    memset(req_sig, 0x00, 65);
 
     ecall_create_ud_req_msg(global_eid, payment_num, payment_size, channel_ids, amount, req_msg, req_sig);
 
@@ -74,6 +111,9 @@ void ecall_create_confirm_msg_w(unsigned int payment_num, unsigned char **origin
 {
     unsigned char *confirm_msg = new unsigned char[sizeof(message)];
     unsigned char *confirm_sig = new unsigned char[65];
+
+    memset(confirm_msg, 0x00, sizeof(message));
+    memset(confirm_sig, 0x00, 65);
 
     ecall_create_confirm_msg(global_eid, payment_num, confirm_msg, confirm_sig);
 
