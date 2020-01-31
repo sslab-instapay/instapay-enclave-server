@@ -160,7 +160,7 @@ void ecall_verify_ud_res_msg(unsigned char *pubaddr, unsigned char *res_msg, uns
         return;
     }
 
-    /* step 2. check that message type is 'AG_RES' */
+    /* step 2. check that message type is 'UD_RES' */
 
     if(res->type != UD_RES) {
         *is_verified = 0;
